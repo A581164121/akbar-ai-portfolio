@@ -21,10 +21,18 @@ const Education = () => {
     }
   ];
 
+  const achievements = [
+    { name: "Search Engine Optimization (SEO) with Squarespace", link: "https://www.coursera.org/account/accomplishments/certificate/RL0TJJS5D23K" },
+    { name: "Fundamental of Digital Marketing", link: "https://skillshop.exceedlms.com/student/award/ZeaDVcLAJDLYHS6pBTwtS1gR" },
+    { name: "Digital Skills Builder", link: "https://www.life-global.org/en/badges/eb7cc2e4-5c7a-4f71-bb37-2fc5a2ed975d" },
+    { name: "HP LIFE Ambassador", link: "https://www.life-global.org/en/badges/38e21467-d354-4d90-b073-e2fbcd99639a" },
+    { name: "Career Explorer", link: "https://www.life-global.org/en/badges/d3603794-2e00-4c88-9dcb-979487a37d8a" },
+    { name: "Operational Aspects", link: "https://www.life-global.org/en/badges/4a459c27-da83-4ff8-ac0e-2aa3305a57cf" },
+    { name: "Finance Focus", link: "https://www.life-global.org/en/badges/67943476-648e-4548-8d5f-23ca32e06463" }
+  ];
+
   const certifications = [
     { name: "Prompt Engineering for LLMs", link: "" },
-    { name: "Fundamental of Digital Marketing", link: "https://skillshop.exceedlms.com/student/award/ZeaDVcLAJDLYHS6pBTwtS1gR" },
-    { name: "Search Engine Optimization (SEO)", link: "https://www.coursera.org/account/accomplishments/certificate/RL0TJJS5D23K" },
     { name: "Data Science & Analytics", link: "" },
     { name: "Business Communications", link: "" },
     { name: "Inventory Management", link: "" },
@@ -32,14 +40,6 @@ const Education = () => {
     { name: "Social Media Marketing", link: "" },
     { name: "AI for Beginners", link: "" },
     { name: "Planning a Generative AI Project", link: "" }
-  ];
-
-  const badges = [
-    { name: "Digital Skills Builder", link: "https://www.life-global.org/en/badges/eb7cc2e4-5c7a-4f71-bb37-2fc5a2ed975d" },
-    { name: "HP LIFE Ambassador", link: "https://www.life-global.org/en/badges/38e21467-d354-4d90-b073-e2fbcd99639a" },
-    { name: "Career Explorer", link: "https://www.life-global.org/en/badges/d3603794-2e00-4c88-9dcb-979487a37d8a" },
-    { name: "Operational Aspects", link: "https://www.life-global.org/en/badges/4a459c27-da83-4ff8-ac0e-2aa3305a57cf" },
-    { name: "Finance Focus", link: "https://www.life-global.org/en/badges/67943476-648e-4548-8d5f-23ca32e06463" }
   ];
 
   return (
@@ -74,8 +74,32 @@ const Education = () => {
           </div>
         </div>
 
-        {/* Certifications */}
+        {/* Achievements */}
         <div className="mb-12">
+          <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
+            <Award className="w-6 h-6 text-accent" />
+            Achievements & Badge Awards
+          </h3>
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex flex-wrap gap-3">
+              {achievements.map((achievement, index) => (
+                <a
+                  key={index}
+                  href={achievement.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-accent rounded-lg hover:shadow-glow transition-all duration-300"
+                >
+                  <span className="text-background font-medium text-sm">{achievement.name}</span>
+                  <ExternalLink className="w-4 h-4 text-background" />
+                </a>
+              ))}
+            </div>
+          </Card>
+        </div>
+
+        {/* Certifications */}
+        <div>
           <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
             <Award className="w-6 h-6 text-secondary" />
             Professional Certifications
@@ -99,30 +123,6 @@ const Education = () => {
                     </a>
                   )}
                 </div>
-              ))}
-            </div>
-          </Card>
-        </div>
-
-        {/* Badges */}
-        <div>
-          <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
-            <Award className="w-6 h-6 text-accent" />
-            Achievements & Badges
-          </h3>
-          <Card className="p-6 bg-gradient-card border-border/50">
-            <div className="flex flex-wrap gap-3">
-              {badges.map((badge, index) => (
-                <a
-                  key={index}
-                  href={badge.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-accent rounded-lg hover:shadow-glow transition-all duration-300"
-                >
-                  <span className="text-background font-medium text-sm">{badge.name}</span>
-                  <ExternalLink className="w-4 h-4 text-background" />
-                </a>
               ))}
             </div>
           </Card>
