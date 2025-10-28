@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { GraduationCap, Award, ExternalLink } from "lucide-react";
+import { GraduationCap, Award, ExternalLink, FileText, FolderOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const Education = () => {
@@ -31,16 +31,30 @@ const Education = () => {
     { name: "Finance Focus", link: "https://www.life-global.org/en/badges/67943476-648e-4548-8d5f-23ca32e06463" }
   ];
 
-  const certifications = [
-    { name: "Prompt Engineering for LLMs", link: "" },
-    { name: "Data Science & Analytics", link: "" },
-    { name: "Business Communications", link: "" },
-    { name: "Inventory Management", link: "" },
-    { name: "Customer Relationship Management", link: "" },
-    { name: "Social Media Marketing", link: "" },
-    { name: "AI for Beginners", link: "" },
-    { name: "Planning a Generative AI Project", link: "" }
-  ];
+  const certificatesByCategory = {
+    "AI & Technology": [
+      { name: "Agentic AI Expert", file: "/certificates/Agentic_AI_Expert_Certificate.pdf" },
+      { name: "Search Engine Optimization (SEO) with Squarespace", file: "/certificates/SEO_Squarespace_Coursera.pdf" },
+      { name: "AI for Beginners", file: "" },
+      { name: "Planning a Generative AI Project", file: "" },
+      { name: "Prompt Engineering for LLMs", file: "" },
+      { name: "Data Science & Analytics", file: "" }
+    ],
+    "Business Management": [
+      { name: "Customer Relationship Management", file: "/certificates/Customer_Relationship_Management.pdf" },
+      { name: "Effective Business Websites", file: "/certificates/Effective_Business_Websites.pdf" },
+      { name: "Inventory Management", file: "/certificates/Inventory_Management.pdf" },
+      { name: "IT for Business Success", file: "/certificates/IT_for_Business_Success.pdf" },
+      { name: "Profit and Loss", file: "/certificates/Profit_and_Loss.pdf" },
+      { name: "Business Communications", file: "" }
+    ],
+    "Digital Marketing": [
+      { name: "Social Media Marketing", file: "/certificates/Social_Media_Marketing.pdf" }
+    ],
+    "Religious Studies": [
+      { name: "Ijazah in Quran Reading (Hafs from Asim)", file: "/certificates/Ijazah_Quran_Reading.pdf" }
+    ]
+  };
 
   return (
     <section className="py-20 px-6 bg-muted/20">
@@ -98,34 +112,46 @@ const Education = () => {
           </Card>
         </div>
 
-        {/* Certifications */}
+        {/* Certifications by Category */}
         <div>
           <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
             <Award className="w-6 h-6 text-secondary" />
             Professional Certifications
           </h3>
-          <Card className="p-6 bg-gradient-card border-border/50">
-            <div className="grid sm:grid-cols-2 gap-3">
-              {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-3 bg-background/30 rounded-lg border border-border/30 hover:border-primary/50 transition-colors"
-                >
-                  <span className="text-foreground text-sm">{cert.name}</span>
-                  {cert.link && (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-accent transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
+          <div className="space-y-6">
+            {Object.entries(certificatesByCategory).map(([category, certs]) => (
+              <Card key={category} className="p-6 bg-gradient-card border-border/50">
+                <div className="flex items-center gap-2 mb-4">
+                  <FolderOpen className="w-5 h-5 text-primary" />
+                  <h4 className="text-lg font-semibold text-foreground">{category}</h4>
                 </div>
-              ))}
-            </div>
-          </Card>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {certs.map((cert, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 bg-background/30 rounded-lg border border-border/30 hover:border-primary/50 transition-colors"
+                    >
+                      <div className="flex items-center gap-2 flex-1">
+                        <FileText className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                        <span className="text-foreground text-sm">{cert.name}</span>
+                      </div>
+                      {cert.file && (
+                        <a
+                          href={cert.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:text-accent transition-colors flex-shrink-0 ml-2"
+                          title="Download Certificate"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>
